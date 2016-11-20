@@ -1,14 +1,21 @@
 ## PHP with the Serverless Framework
-In order to use PHP on AWS Lambda, the PHP binary, including the required libraries, has to be integrated into the app.
+In order to use PHP on AWS Lambda you need to bundle the PHP binary, including the required libraries, into the package. This serverless example project includes the necessary binary to run a simple PHP script.
 
 ### Prerequisites
 - [serverless](https://serverless.com/)
 - [node](https://nodejs.org)
 
+###
+
+Install this serverless project. It will create a new serverless-php folder.
+```shell
+serverless install --url https://github.com/ZeroSharp/serverless-php
+```
+
 ### Deploying the sample function to AWS
 
 Check the `serverless.yml` file and modify region and stage if necessary.
-```
+```shell
 sls deploy
 ```
 
@@ -26,7 +33,7 @@ sls invoke --function hello
 
 ## Rebuilding the PHP binary
 
-If you need different compiler flags or depndencies you will need to recompile PHP.
+If you need different compiler flags or dependencies you will need to recompile PHP.
 
 ### Prerequisites
 - [docker](https://www.docker.com/)
