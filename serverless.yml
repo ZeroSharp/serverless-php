@@ -43,8 +43,8 @@ provider:
 
 package:
   exclude:
-    - build_php_7.sh
-    - Dockerfile.BuildPHP
+    - buildphp.sh
+    - dockerfile.buildphp
 
 # you can add packaging information here
 #package:
