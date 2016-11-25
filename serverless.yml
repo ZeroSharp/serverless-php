@@ -43,6 +43,9 @@ provider:
 
 package:
   exclude:
+    - .git/**
+    - LICENCE.md
+    - README.md
     - buildphp.sh
     - dockerfile.buildphp
 
