@@ -1,72 +1,30 @@
-# Compile PHP 7.1.0RC6 with static linked dependencies
+# Compile PHP with static linked dependencies
 # to create a single running binary
 
-FROM ubuntu
+FROM amazonlinux
 
 ARG PHP_VERSION
 
-RUN apt-get update && apt-get install -y \
-    git \
-    autoconf \
-    wget \
-        libcurl4-openssl-dev \
-        libjpeg-dev \
-        libpng-dev \
-        libxpm-dev \
-        libmysqlclient-dev \
-        libpq-dev \
-        libicu-dev \
-        libfreetype6-dev \
-        libldap2-dev \
-        libxslt-dev \
-        build-essential \
-        libssl-dev \
-        libgmp-dev \
-        libpspell-dev \
-        librecode-dev \
-        php-xml
+RUN yum install autoconf automake libtool bison re2c libxml2-devel openssl-devel yum install curl-devel -y
 
-RUN git clone -b $PHP_VERSION https://github.com/php/php-src /php-src/
+RUN curl -sL https://github.com/php/php-src/archive/$PHP_VERSION.tar.gz | tar -zxv
 
-WORKDIR /php-src
-
-RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
-
-RUN wget http://launchpadlibrarian.net/140087283/libbison-dev_2.7.1.dfsg-1_amd64.deb
-RUN wget http://launchpadlibrarian.net/140087282/bison_2.7.1.dfsg-1_amd64.deb
-
-RUN dpkg -i libbison-dev_2.7.1.dfsg-1_amd64.deb
-RUN dpkg -i bison_2.7.1.dfsg-1_amd64.deb
+WORKDIR /php-src-$PHP_VERSION
 
 RUN ./buildconf --force
 
 RUN ./configure \
-    --prefix=$HOME/php7/usr \
-    --with-config-file-path=$HOME/php7/usr/etc \
-    --without-pear \
-    --enable-shared=no	\
-	--enable-static=yes	\
+    --enable-static=yes \
+    --enable-shared=no \
     --disable-all \
-    --enable-mbstring \
-    --enable-zip \
-    --enable-bcmath \
-    --enable-pcntl \
-    --enable-exif \
-    --enable-calendar \
-    --enable-sysvmsg \
-    --enable-sysvsem \
-    --enable-sysvshm \
+    --enable-json \
     --enable-libxml \
+    --enable-mbstring \
+    --enable-phar \
+    --enable-soap \
     --enable-xml \
     --with-curl \
-    --with-iconv \
-    --with-gmp \
-    --with-gd \
-    --with-zlib \
-    --enable-gd-native-ttf \
-    --enable-gd-jis-conv \
-    --libdir=/usr/lib64
+    --with-openssl \
+    --without-pear
 
-RUN make
-
-RUN make install
+RUN make -j 5

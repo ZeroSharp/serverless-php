@@ -41,17 +41,20 @@ If you need different compiler flags or dependencies you will need to recompile 
 - [docker](https://www.docker.com/)
 
 ### Compile the static standalone PHP 7 binary
-To do this, we have to compile the PHP 7.1.0RC6 with statically linked libraries:
+To do this, we have to compile the PHP 7.1.2 with statically linked libraries:
 
 ```shell
 sh buildphp.sh
 ```
 
 ### PHP Version
-The default is to use the PHP 7.1.0RC6 branch to compile the PHP binary.
+The default is to use the PHP 7.1.2 branch to compile the PHP binary.
 To switch the PHP version you can set the branch PHP_VERSION_GIT_BRANCH parameter in `buildphp.sh` line 8.
 
 ## Thanks ##
 
-Thanks to [Danny Linden](https://github.com/dannylinden/aws-lambda-php) who worked out most of the hard stuff here.
+Thanks to:
+- [Danny Linden](https://github.com/dannylinden/aws-lambda-php) who worked out most of the hard stuff here,
+- [ZeroSharp](https://github.com/ZeroSharp) who is providing the original GitHub repo,
+- [Stolz](https://github.com/Stolz) for the binaries update.
 
