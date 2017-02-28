@@ -53,5 +53,8 @@ To switch the PHP version you can set the branch PHP_VERSION_GIT_BRANCH paramete
 
 ## Thanks ##
 
-Thanks to [Danny Linden](https://github.com/dannylinden/aws-lambda-php) who worked out most of the hard stuff here.
+Thanks to:
+- [Danny Linden](https://github.com/dannylinden/aws-lambda-php) who worked out most of the hard stuff here,
+- [ZeroSharp](https://github.com/ZeroSharp) who is providing the original GitHub repo,
+- [Stolz](https://github.com/Stolz) for the binaries update.
 
