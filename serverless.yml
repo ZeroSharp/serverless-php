@@ -19,7 +19,7 @@ service: serverless-php
 
 provider:
   name: aws
-  runtime: nodejs4.3
+  runtime: nodejs6.10
   region: eu-west-1
 
 # you can overwrite defaults here

@@ -12,10 +12,21 @@ RUN yum install \
     bison \
     re2c \
     libxml2-devel \
-    openssl-devel \
+#    openssl-devel \
     libpng-devel \
     libjpeg-devel \
     curl-devel -y
+
+# Install an older version of OpenSSL until Amazon updates the lambda image. 
+RUN curl -sL http://www.openssl.org/source/openssl-1.0.1k.tar.gz | tar -zxv
+
+WORKDIR /openssl-1.0.1k
+
+RUN ./config
+RUN make
+RUN make install
+
+WORKDIR /
 
 RUN curl -sL https://github.com/php/php-src/archive/$PHP_VERSION.tar.gz | tar -zxv
 
