@@ -1,7 +1,11 @@
 # Compile PHP with static linked dependencies
 # to create a single running binary
 
-FROM amazonlinux
+# If things are not working, check the version below (2017.03.1.20170812)
+# matches the lambda runtime specified here: 
+# https://docs.aws.amazon.com/lambda/latest/dg/current-supported-versions.html
+
+FROM amazonlinux:2017.03.1.20170812
 
 ARG PHP_VERSION
 
